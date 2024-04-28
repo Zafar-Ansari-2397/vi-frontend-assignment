@@ -1,11 +1,31 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
 import { type ColumnDef } from "@tanstack/react-table";
 import { labels, priorities, statuses } from "../_constants/metadata";
 import { type Task } from "../_constants/schema";
 
 export const columns: Array<ColumnDef<Task>> = [
+    {
+        id: "select-col",
+        enableResizing: true,
+        header: ({ table }) => (
+            <Checkbox
+                checked={table.getIsAllRowsSelected()}
+                // indeterminate={table.getIsSomeRowsSelected()}
+                // onCheckedChange={table.getToggleAllRowsSelectedHandler()} //or getToggleAllPageRowsSelectedHandler
+            />
+        ),
+        cell: ({ row }) => (
+            <Checkbox
+                checked={row.getIsSelected()}
+                disabled={!row.getCanSelect()}
+                onCheckedChange={row.getToggleSelectedHandler()}
+            />
+        ),
+    },
+
     {
         accessorKey: "id",
         header: ({ column }) => <span>Task</span>,

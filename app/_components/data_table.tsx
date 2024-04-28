@@ -28,6 +28,9 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
         columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        enableMultiRowSelection: false,
+        enableColumnResizing: true,
+        columnResizeMode: "onChange",
     });
 
     // TASK : Make first 2 columns (i.e. checkbox and task id) sticky
